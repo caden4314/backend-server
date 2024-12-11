@@ -1,3 +1,4 @@
+import { cmp } from 'geoip-lite';
 import { autoLogin } from './api.js';
 import { formatDate } from './utils/date.js';
 import { formatTime } from './utils/timeUtils.js';
@@ -143,6 +144,7 @@ function renderLatestRecords(records) {
 }
 
 async function loadStats() {
+    console.log("ADMIN TRYING TO GET ADMIN PANEL INFO")
     try {
         // Load users
         const users = await fetchWithAuth('/api/admin/users');
@@ -192,6 +194,8 @@ logoutBtn.addEventListener('click', () => {
 });
 
 async function init() {
+    console.log('INIT ADMIN')
+    
     try {
         const userId = localStorage.getItem('userId');
         if (!userId) {
@@ -208,12 +212,12 @@ async function init() {
         await loadStats();
 
         // Refresh stats every 30 seconds
-        setInterval(loadStats, 30000);
+        setInterval(loadStats, 10000);
     } catch (error) {
         console.error('Error initializing admin panel:', error);
         alert(error.message);
         window.location.href = '/';
-    }
+    } 
 }
 
 init();
