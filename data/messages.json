@@ -1,18 +1,8 @@
-[
-  {
-    "id": "1733872856844",
-    "userId": "1733860156023",
-    "username": "JEFF4822",
-    "content": "Test",
-    "timestamp": "2024-12-10T23:20:56.844Z",
-    "edited": false
-  },
-  {
+[{
     "id": "1733872871720",
     "userId": "system",
     "username": "System Bot",
     "content": "📢 BROADCAST: Test",
     "timestamp": "2024-12-10T23:21:11.720Z",
     "edited": false
-  }
-]
+}]
