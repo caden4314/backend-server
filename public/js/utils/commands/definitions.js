@@ -1,7 +1,6 @@
 import { CommandType, CommandPermission } from './types.js';
 
-export const COMMANDS = [
-    {
+export const COMMANDS = [{
         name: 'ban',
         type: CommandType.MODERATION,
         permission: CommandPermission.ADMIN,
@@ -75,6 +74,32 @@ export const COMMANDS = [
         examples: [
             '/broadcast Important announcement!',
             '/broadcast Server update completed'
+        ]
+    },
+    {
+        name: 'unban',
+        type: CommandType.MODERATION,
+        permission: CommandPermission.ADMIN,
+        description: 'Unban a user from the server',
+        usage: '/unban <user/id>',
+        icon: '✅',
+        needsUser: true,
+        examples: [
+            '/unban username',
+            '/unban 123456789'
+        ]
+    },
+    {
+        name: 'unmute',
+        type: CommandType.MODERATION,
+        permission: CommandPermission.ADMIN,
+        description: 'Unmute a user on the server',
+        usage: '/unmute <user/id>',
+        icon: '🔊',
+        needsUser: true,
+        examples: [
+            '/unmute username',
+            '/unmute 123456789'
         ]
     }
 ];
