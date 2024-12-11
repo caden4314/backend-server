@@ -20,7 +20,7 @@ async function fetchWithAuth(url, options = {}) {
         window.location.href = '/';
         throw new Error('Not authenticated');
     }
-    
+
     const response = await fetch(url, {
         ...options,
         headers: {
@@ -40,11 +40,16 @@ async function fetchWithAuth(url, options = {}) {
 
 function formatRecordType(type) {
     switch (type) {
-        case 'warnings': return '⚠️ Warning';
-        case 'mutes': return '🔇 Mute';
-        case 'bans': return '🔨 Ban';
-        case 'tempbans': return '⏳ Temp Ban';
-        default: return type;
+        case 'warnings':
+            return '⚠️ Warning';
+        case 'mutes':
+            return '🔇 Mute';
+        case 'bans':
+            return '🔨 Ban';
+        case 'tempbans':
+            return '⏳ Temp Ban';
+        default:
+            return type;
     }
 }
 
@@ -141,6 +146,8 @@ async function loadStats() {
     try {
         // Load users
         const users = await fetchWithAuth('/api/admin/users');
+        console.log(`ADMIN REQUESTING USERS ${users}`)
+
         totalUsersSpan.textContent = users.length;
 
         // Calculate active users (logged in within last 24 hours)

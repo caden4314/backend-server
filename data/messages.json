@@ -1,8 +1,18 @@
-[{
+[
+  {
     "id": "1733872871720",
     "userId": "system",
     "username": "System Bot",
     "content": "MESSAGE SYSTEM STARTED, WELCOME ALL USERS!",
     "timestamp": "2024-12-10T23:21:11.720Z",
     "edited": false
-}]
+  },
+  {
+    "id": "1733959728968",
+    "userId": "1733860156023",
+    "username": "MYNAMEISJEFF482",
+    "content": "Test",
+    "timestamp": "2024-12-11T23:28:48.968Z",
+    "edited": false
+  }
+]
