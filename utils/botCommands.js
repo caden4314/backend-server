@@ -17,7 +17,7 @@ function handleCommand(command, args, adminUser) {
 
     const input = `/${command} ${args.join(' ')}`;
     const parsed = parseCommand(input);
-    
+
     switch (parsed.command) {
         case 'ban':
             return handleBanCommand(parsed, adminUser);
@@ -31,16 +31,71 @@ function handleCommand(command, args, adminUser) {
             return handleSayCommand(parsed.message);
         case 'broadcast':
             return handleBroadcastCommand(parsed.message);
+        case 'unban': // New unban command
+            return handleUnbanCommand(parsed, adminUser);
+        case 'unmute': // New unmute command
+            return handleUnmuteCommand(parsed, adminUser);
         default:
             throw new Error('Unknown command');
     }
 }
 
-function handleBanCommand(parsed, adminUser) {
-    const targetUser = parsed.isId ? 
-        findUserById(parsed.target) : 
+function handleUnbanCommand(parsed, adminUser) {
+    const targetUser = parsed.isId ?
+        findUserById(parsed.target) :
         findUserByUsername(parsed.target);
-    
+
+    if (!targetUser) {
+        throw new Error('User not found');
+    }
+
+    if (!targetUser.banned) {
+        return { success: false, message: `${targetUser.username} is not banned.` };
+    }
+
+    // Unban the user
+    targetUser.banned = false;
+
+    addMessage(
+        BOT_USER.id,
+        BOT_USER.username,
+        `✅ User ${targetUser.username} has been unbanned by ${adminUser.username}.`
+    );
+
+    return { success: true, message: `Successfully unbanned ${targetUser.username}` };
+}
+
+function handleUnmuteCommand(parsed, adminUser) {
+    const targetUser = parsed.isId ?
+        findUserById(parsed.target) :
+        findUserByUsername(parsed.target);
+
+    if (!targetUser) {
+        throw new Error('User not found');
+    }
+
+    if (!targetUser.muted) {
+        return { success: false, message: `${targetUser.username} is not muted.` };
+    }
+
+    // Unmute the user
+    targetUser.muted = false;
+
+    addMessage(
+        BOT_USER.id,
+        BOT_USER.username,
+        `🔊 User ${targetUser.username} has been unmuted by ${adminUser.username}.`
+    );
+
+    return { success: true, message: `Successfully unmuted ${targetUser.username}` };
+}
+
+
+function handleBanCommand(parsed, adminUser) {
+    const targetUser = parsed.isId ?
+        findUserById(parsed.target) :
+        findUserByUsername(parsed.target);
+
     if (!targetUser) {
         throw new Error('User not found');
     }
@@ -48,15 +103,15 @@ function handleBanCommand(parsed, adminUser) {
     if (targetUser.role === 'admin') {
         throw new Error('Cannot ban an admin');
     }
-    
+
     banUser(targetUser.username);
-    
+
     addUserRecord(targetUser.id, 'bans', {
         adminId: adminUser.id,
         adminName: adminUser.username,
         reason: parsed.reason
     });
-    
+
     const idInfo = parsed.isId ? ` (ID: ${parsed.target})` : '';
     addMessage(
         BOT_USER.id,
@@ -68,10 +123,10 @@ function handleBanCommand(parsed, adminUser) {
 }
 
 function handleTempBanCommand(parsed, adminUser) {
-    const targetUser = parsed.isId ? 
-        findUserById(parsed.target) : 
+    const targetUser = parsed.isId ?
+        findUserById(parsed.target) :
         findUserByUsername(parsed.target);
-    
+
     if (!targetUser) {
         throw new Error('User not found');
     }
@@ -79,9 +134,9 @@ function handleTempBanCommand(parsed, adminUser) {
     if (targetUser.role === 'admin') {
         throw new Error('Cannot ban an admin');
     }
-    
+
     banUser(targetUser.username);
-    
+
     addUserRecord(targetUser.id, 'tempbans', {
         adminId: adminUser.id,
         adminName: adminUser.username,
@@ -89,7 +144,7 @@ function handleTempBanCommand(parsed, adminUser) {
         duration: parsed.duration,
         expiresAt: new Date(Date.now() + parsed.duration).toISOString()
     });
-    
+
     const idInfo = parsed.isId ? ` (ID: ${parsed.target})` : '';
     addMessage(
         BOT_USER.id,
@@ -101,10 +156,10 @@ function handleTempBanCommand(parsed, adminUser) {
 }
 
 function handleMuteCommand(parsed, adminUser) {
-    const targetUser = parsed.isId ? 
-        findUserById(parsed.target) : 
+    const targetUser = parsed.isId ?
+        findUserById(parsed.target) :
         findUserByUsername(parsed.target);
-    
+
     if (!targetUser) {
         throw new Error('User not found');
     }
@@ -116,7 +171,7 @@ function handleMuteCommand(parsed, adminUser) {
     if (!parsed.duration) {
         throw new Error('Mute command requires a duration (e.g. 1h, 2d, 1w)');
     }
-    
+
     addUserRecord(targetUser.id, 'mutes', {
         adminId: adminUser.id,
         adminName: adminUser.username,
@@ -124,7 +179,7 @@ function handleMuteCommand(parsed, adminUser) {
         duration: parsed.duration,
         expiresAt: new Date(Date.now() + parsed.duration).toISOString()
     });
-    
+
     const idInfo = parsed.isId ? ` (ID: ${parsed.target})` : '';
     addMessage(
         BOT_USER.id,
@@ -136,10 +191,10 @@ function handleMuteCommand(parsed, adminUser) {
 }
 
 function handleWarnCommand(parsed, adminUser) {
-    const targetUser = parsed.isId ? 
-        findUserById(parsed.target) : 
+    const targetUser = parsed.isId ?
+        findUserById(parsed.target) :
         findUserByUsername(parsed.target);
-    
+
     if (!targetUser) {
         throw new Error('User not found');
     }
@@ -147,13 +202,13 @@ function handleWarnCommand(parsed, adminUser) {
     if (targetUser.role === 'admin') {
         throw new Error('Cannot warn an admin');
     }
-    
+
     addUserRecord(targetUser.id, 'warnings', {
         adminId: adminUser.id,
         adminName: adminUser.username,
         reason: parsed.reason
     });
-    
+
     const idInfo = parsed.isId ? ` (ID: ${parsed.target})` : '';
     addMessage(
         BOT_USER.id,
@@ -179,10 +234,10 @@ function handleBroadcastCommand(message) {
     }
 
     addMessage(BOT_USER.id, BOT_USER.username, `📢 BROADCAST: ${message}`);
-    return { 
-        success: true, 
+    return {
+        success: true,
         message: 'Broadcast sent',
-        broadcast: message 
+        broadcast: message
     };
 }
 
