@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/edit-user.css">
+</head>
+<body>
+    <div class="edit-container">
+        <header class="admin-header">
+            <h1>Edit User</h1>
+            <div id="admin-info"></div>
+            <button id="back-btn">Back to Admin</button>
+            <button id="logout-btn">Logout</button>
+        </header>
+
+        <div class="edit-content">
+            <form id="edit-user-form" class="edit-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" name="role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="user-info-display">
+                    <h3>User Information</h3>
+                    <div id="user-details"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="/js/edit-user.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Panel</h1>
+            <div id="admin-info"></div>
+            <div class="header-actions">
+                <a href="/home" class="nav-btn" id="back-to-chat">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Chat
+                </a>
+                <button class="nav-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <div class="section stats-section">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <span id="total-users">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Users</h3>
+                        <span id="active-users">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Messages</h3>
+                        <span id="total-messages">0</span>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <a href="/users" class="action-btn">
+                        <i class="fas fa-users"></i>
+                        Manage Users
+                    </a>
+                    <a href="/messages" class="action-btn">
+                        <i class="fas fa-comments"></i>
+                        Manage Messages
+                    </a>
+                </div>
+            </div>
+
+            <div class="section activity-section">
+                <h2>Recent Activity</h2>
+                <div class="activity-list" id="activity-list">
+                    <div class="activity-card">
+                        <h3>Latest Users</h3>
+                        <div id="latest-users">
+                            <p>No recent users</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <h3>Latest Messages</h3>
+                        <div id="latest-messages">
+                            <p>No recent messages</p>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <h3>Recent Records</h3>
+                        <div id="latest-records">
+                            <p>No recent records</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

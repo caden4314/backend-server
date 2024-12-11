@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - Chat App</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome Back!</h1>
+      <form id="signin-form">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter your username"
+            required
+            autocomplete="off"
+            autocapitalize="off"
+          />
+        </div>
+        <button type="submit" id="submit-btn">Sign In</button>
+      </form>
+      <div id="message"></div>
+    </div>
+    <script type="module" src="/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Management</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/messages.css">
+</head>
+<body>
+    <div class="messages-container">
+        <header class="admin-header">
+            <h1>Message Management</h1>
+            <div id="admin-info"></div>
+            <button id="back-btn">Back to Admin</button>
+            <button id="logout-btn">Logout</button>
+        </header>
+
+        <div class="messages-content">
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="message-search" placeholder="Search messages...">
+                </div>
+                <div class="filter-options">
+                    <select id="user-filter">
+                        <option value="">All Users</option>
+                    </select>
+                    <select id="date-filter">
+                        <option value="">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="messages-list" id="messages-list"></div>
+
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page">Next</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/js/messages.js"></script>
+</body>
+</html>

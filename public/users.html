@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/users.css">
+</head>
+<body>
+    <div class="users-container">
+        <header class="admin-header">
+            <h1>User Management</h1>
+            <div id="admin-info"></div>
+            <button id="back-btn">Back to Admin</button>
+            <button id="logout-btn">Logout</button>
+        </header>
+
+        <div class="users-content">
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="user-search" placeholder="Search users...">
+                </div>
+                <div class="filter-options">
+                    <select id="role-filter">
+                        <option value="">All Roles</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                    <select id="status-filter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="users-list" id="users-list"></div>
+
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page">Next</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/js/users.js"></script>
+</body>
+</html>

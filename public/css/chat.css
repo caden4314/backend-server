@@ -1,0 +1,189 @@
+/* Chat Container */
+.chat-container {
+    width: 800px !important;
+    min-width: 800px !important;
+    margin: 20px auto;
+    background: #36393f;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+}
+
+/* Header */
+.chat-header {
+    padding: 20px;
+    background: #202225;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #dcddde;
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-btn {
+    background: #7289da;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.admin-btn:hover {
+    background: #677bc4;
+    transform: translateY(-1px);
+}
+
+#logout-btn {
+    background: #ed4245;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#logout-btn:hover {
+    background: #d83c3e;
+    transform: translateY(-1px);
+}
+
+/* Role Badge */
+.role-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.role-badge.admin {
+    background: #7289da;
+    color: white;
+}
+
+.role-badge.user {
+    background: #43b581;
+    color: white;
+}
+
+/* Messages Area */
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #36393f;
+}
+
+/* Message Input */
+.message-input-container {
+    padding: 20px;
+    background: #40444b;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    gap: 10px;
+    position: relative;
+}
+
+.message-input-container input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background: #40444b;
+    color: white;
+    font-size: 16px;
+    border: 1px solid #202225;
+    transition: border-color 0.2s;
+}
+
+.message-input-container input:focus {
+    outline: none;
+    border-color: #7289da;
+}
+
+.message-input-container button {
+    padding: 12px 24px;
+    background: #7289da;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.message-input-container button:hover {
+    background: #677bc4;
+    transform: translateY(-1px);
+}
+
+/* Scrollbar Styling */
+.chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #2f3136;
+    border-radius: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #202225;
+    border-radius: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #18191c;
+}
+
+/* System Messages */
+.message.system-message {
+    background: rgba(114, 137, 218, 0.1);
+    border-left: 4px solid #7289da;
+}
+
+.message.system-message .username {
+    color: #43b581;
+}
