@@ -15,6 +15,8 @@ const latestRecordsDiv = document.getElementById('latest-records');
 
 let currentUser = null;
 
+console.log('ADMIN SYSTEM TEST')
+
 async function fetchWithAuth(url, options = {}) {
     const userId = localStorage.getItem('userId');
     if (!userId) {
@@ -151,6 +153,7 @@ async function loadStats() {
         console.log(`ADMIN REQUESTING USERS ${users}`)
 
         totalUsersSpan.textContent = users.length;
+        console.log(`ADMIN REQESTING USERS DONE, USERS: ${totalMessagesSpan.textContent}`)
 
         // Calculate active users (logged in within last 24 hours)
         const now = new Date();

@@ -10,15 +10,16 @@ const { handleApiError, createApiResponse } = require('../utils/apiUtils');
 router.get('/admin/records', isAdmin, (req, res) => {
     try {
         const users = loadUsers();
+        console.log("TESTING")
         const records = {};
-        
+
         users.forEach(user => {
             const userRecords = getUserRecords(user.id);
             if (Object.values(userRecords).some(arr => arr.length > 0)) {
                 records[user.id] = userRecords;
             }
         });
-        
+
         res.json(createApiResponse(records));
     } catch (error) {
         console.error('Error loading user records:', error);
